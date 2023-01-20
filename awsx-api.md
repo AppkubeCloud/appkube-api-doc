@@ -8,14 +8,12 @@ AWSX --vaultURL=vault.synectiks.net --productEnclaveId=636363636 createCluster  
 AWSX --vaultURL=vault.synectiks.net --clusterId=636363636 deployServiceInCluster  -- prod=EMS --env= PROD --serviceName = Admission 
 --serviceType = business --serviceSpec = file1.json --zone=us-west-2
 
-AWSX --vaultURL=vault.synectiks.net --productEnclaveId=636363636 deployServiceInCloudManaged  -- prod=EMS --env= PROD --serviceName = FileRepo 
---serviceType = common -- serviceSpec = file1.json --zone=us-west-2
+AWSX --vaultURL=vault.synectiks.net --productEnclaveId=636363636 deployServiceInCloudManaged  -- prod=EMS --env= PROD --serviceName = FileRepo --serviceType = common -- serviceSpec = file1.json --zone=us-west-2
 
 
 AWSX --vaultURL=vault.synectiks.net --LandingZoneId=636363636  getElements  --zone=us-west-2
 
 AWSX --vaultURL=vault.synectiks.net --LandingZoneId=636363636  getElementsMetadata  elementType=EKS  --zone=us-west-2
-
 
 AWSX --vaultURL=vault.synectiks.net --accountId=636363636  getElementMetadata  elementType=EKS  elementId=id --zone=us-west-2
 
