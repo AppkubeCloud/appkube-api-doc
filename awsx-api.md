@@ -50,4 +50,50 @@ AWSX --vaultURL=vault.synectiks.net getServiceMeshURL -- prod=EMS --env= PROD --
 AWSX --vaultURL=vault.synectiks.net getServiceMeshMetaData -- prod=EMS --env= PROD --zone=us-west-2 (find accountId from CMDB and then filter and then get details metadata)
 
 
+Cost Spike related CLI's
+
+### Description--
+This CLI will get the cost trends (up/down  for dialy / weekly / monthly ) for any App / Data services. We often need to filter the App and Data services based on (product / env / module ) and determine the consolidated cost trends.
+
+Example -- 
+    awsx cost getCostSpike --arn --account=646456546 --services=S3 --Product="EMS " --env="PROD" --Module="Admission" --period=daily/monthly/Hourly --start= "2/10/2023 " --end= "2/31/2023" (percentage wise ; bucket wise)
+
+This should collect the daily cost data from 2/10/2023 to 2/31/2023 of those buckets that is used by EMS product , Prod Environment , Admission module and calculate the trends.
+
+Algorithm:
+    Find all the buckets that is used by product=EMS , ENV=PROD , MODULE=Admission
+        Find the Cost of the corresponding buckets(sum) day-wise from 2/10/2023 to 2/31/2023
+                {Total Volume of Buckets * Per Unit S3 cost}
+        Get the data in the following format inside the program
+
+            |Date | Cost | 
+            |:---|:---|           
+            |2/10/2023| 5.23|
+            |2/11/2023| 5.83|   
+            |2/12/2023| 5.95|
+        Then calculate the difference and determine the spike  no and create another table as follows
+            |Date | Cost | Spike | 
+            |:---|:---|:---|
+            |2/10/2023| 5.23|+10%|
+            |2/11/2023| 5.83|+20%|   
+            |2/12/2023| 5.95|+3%|
+        Return this entire rows as suitable json or rows 
+
+    
+awsx cost getCostSpike --arn --account=646456546 --services=S3 --Product=" " --env=" " --Module=" " --period=daily/monthly/Hourly --start= " " --end= " " (percentage wise ; bucket wise)
+
+
+
+
+awsx cost getCostSpike --arn --account=646456546 --services=ec2 --Product=" " --env=" " --Module=" " --period=daily/monthly/Hourly --start= " " --end= " " (percentage wise ; instance id or name ; instance type)
+
+
+awsx cost getCostSpike --arn --account=646456546 --services=eks --Product=" " --env=" " --Module=" " --period=daily/monthly/Hourly --start= " " --end= " " (percentage wise ; cluster wise)
+
+
+awsx cost getCostSpike --arn --account=646456546 --services=lambda --Product=" " --env=" " --Module=" " --period=daily/monthly/Hourly --start= " " --end= " " (percentage wise ; function wise)
+
+
+awsx cost getCostSpike --arn --account=646456546 --services=RDS --Product=" " --env=" " --Module=" " --period=daily/monthly/Weekly --start= " " --end= " " (percentage wise ; database engine wise)
+
 
