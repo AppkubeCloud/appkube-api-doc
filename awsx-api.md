@@ -61,6 +61,7 @@ Example --
 This should collect the daily cost data from 2/10/2023 to 2/31/2023 of those buckets that is used by EMS product , Prod Environment , Admission module and calculate the trends.
 
 Algorithm:
+    
     Find all the buckets that is used by product=EMS , ENV=PROD , MODULE=Admission
 
         Find the Cost of the corresponding buckets(sum) day-wise from 2/10/2023 to 2/31/2023
@@ -75,7 +76,7 @@ Algorithm:
             |2/11/2023| 5.83|   
             |2/12/2023| 5.95|
 
-            
+
         Then calculate the difference and determine the spike  no and create another table as follows
             |Date | Cost | Spike | 
             |:---|:---|:---|
