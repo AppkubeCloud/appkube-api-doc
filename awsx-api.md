@@ -86,20 +86,130 @@ Algorithm:
         Return this entire rows as suitable json or rows 
 
     
-awsx cost getCostSpike --arn --account=646456546 --services=S3 --Product=" " --env=" " --Module=" " --period=daily/monthly/Hourly --start= " " --end= " " (percentage wise ; bucket wise)
+Example -- 
+    awsx cost getCostSpike --arn --account=646456546 --services=EC2 --Product="EMS " --env="PROD" --Module="Admission" --period=daily/monthly/Hourly --start= "2/10/2023 " --end= "2/31/2023" (percentage wise ; instance name or ID wise, and the instance size)
+
+This should collect the daily cost data from 2/10/2023 to 2/31/2023 of those instances that is used by EMS product , Prod Environment , Admission module and calculate the trends.
+
+Algorithm:
+    
+    Find all the instances that is used by product=EMS , ENV=PROD , MODULE=Admission
+
+        Find the Cost of the instances(sum) day-wise from 2/10/2023 to 2/31/2023
+
+                {Total instances with their size and shall get cost for each instance}
+
+        Get the data in the following format inside the program
+
+            |Date | Cost | 
+            |:---|:---|           
+            |2/10/2023| 5.23|
+            |2/11/2023| 5.83|   
+            |2/12/2023| 5.95|
+
+
+        Then calculate the difference and determine the spike now and create another table as follows
+            |Date | Cost | Spike | 
+            |:---|:---|:---|
+            |2/10/2023| 5.23|+10%|
+            |2/11/2023| 5.83|+20%|   
+            |2/12/2023| 5.95|+3%|
+        Return this entire rows as suitable json or rows
+
+
+Example -- 
+    awsx cost getCostSpike --arn --account=646456546 --services=EKS --Product="EMS " --env="PROD" --Module="Admission" --period=daily/monthly/Hourly --start= "2/10/2023 " --end= "2/31/2023" (percentage wise ; Cluster Name)
+
+This should collect the daily cost data from 2/10/2023 to 2/31/2023 of those clusters that is used by EMS product , Prod Environment , Admission module and calculate the trends.
+
+Algorithm:
+    
+    Find all the clusters that is used by product=EMS , ENV=PROD , MODULE=Admission
+
+        Find the Cost of the clusters(sum) day-wise from 2/10/2023 to 2/31/2023
+
+                {get billing for each cluster}
+
+        Get the data in the following format inside the program
+
+            |Date | Cost | 
+            |:---|:---|           
+            |2/10/2023| 5.23|
+            |2/11/2023| 5.83|   
+            |2/12/2023| 5.95|
+
+
+        Then calculate the difference and determine the spike now and create another table as follows
+            |Date | Cost | Spike | 
+            |:---|:---|:---|
+            |2/10/2023| 5.23|+10%|
+            |2/11/2023| 5.83|+20%|   
+            |2/12/2023| 5.95|+3%|
+        Return this entire rows as suitable json or rows
+
+
+Example -- 
+    awsx cost getCostSpike --arn --account=646456546 --services=lambda --Product="EMS " --env="PROD" --Module="Admission" --period=daily/monthly/Hourly --start= "2/10/2023 " --end= "2/31/2023" (percentage wise ; function Name)
+
+This should collect the daily cost data from 2/10/2023 to 2/31/2023 of those lambda functions that is used by EMS product , Prod Environment , Admission module and calculate the trends.
+
+Algorithm:
+    
+    Fetch the lambda functions that is used by product=EMS , ENV=PROD , MODULE=Admission
+
+        Find the Cost of the lamdba functions(sum) day-wise from 2/10/2023 to 2/31/2023
+
+                {get billing for each lambda function(with_Name)}
+
+        Get the data in the following format inside the program
+
+            |Date | Cost | 
+            |:---|:---|           
+            |2/10/2023| 5.23|
+            |2/11/2023| 5.83|   
+            |2/12/2023| 5.95|
+
+
+        Then calculate the difference and determine the spike now and create another table as follows
+            |Date | Cost | Spike | 
+            |:---|:---|:---|
+            |2/10/2023| 5.23|+10%|
+            |2/11/2023| 5.83|+20%|   
+            |2/12/2023| 5.95|+3%|
+        Return this entire rows as suitable json or rows
+
+
+Example -- 
+    awsx cost getCostSpike --arn --account=646456546 --services=RDS --Product="EMS " --env="PROD" --Module="Admission" --period=daily/monthly/Hourly --start= "2/10/2023 " --end= "2/31/2023" (percentage wise ; DataBase Name)
+
+This should collect the daily cost data from 2/10/2023 to 2/31/2023 of those DB's that is used by EMS product , Prod Environment , Admission module and calculate the trends.
+
+Algorithm:
+    
+    Find all the DB's that is used by product=EMS , ENV=PROD , MODULE=Admission
+
+        Find the Cost of the DB's(sum) day-wise from 2/10/2023 to 2/31/2023
+
+                {get billing for each DB and return their instance size which are attached to the DB's}
+
+        Get the data in the following format inside the program
+
+            |Date | Cost | 
+            |:---|:---|           
+            |2/10/2023| 5.23|
+            |2/11/2023| 5.83|   
+            |2/12/2023| 5.95|
+
+
+        Then calculate the difference and determine the spike now and create another table as follows
+            |Date | Cost | Spike | 
+            |:---|:---|:---|
+            |2/10/2023| 5.23|+10%|
+            |2/11/2023| 5.83|+20%|   
+            |2/12/2023| 5.95|+3%|
+        Return this entire rows as suitable json or rows
 
 
 
-
-awsx cost getCostSpike --arn --account=646456546 --services=ec2 --Product=" " --env=" " --Module=" " --period=daily/monthly/Hourly --start= " " --end= " " (percentage wise ; instance id or name ; instance type)
-
-
-awsx cost getCostSpike --arn --account=646456546 --services=eks --Product=" " --env=" " --Module=" " --period=daily/monthly/Hourly --start= " " --end= " " (percentage wise ; cluster wise)
-
-
-awsx cost getCostSpike --arn --account=646456546 --services=lambda --Product=" " --env=" " --Module=" " --period=daily/monthly/Hourly --start= " " --end= " " (percentage wise ; function wise)
-
-
-awsx cost getCostSpike --arn --account=646456546 --services=RDS --Product=" " --env=" " --Module=" " --period=daily/monthly/Weekly --start= " " --end= " " (percentage wise ; database engine wise)
 
 
