@@ -94,5 +94,3 @@
 |services service-cureent-sla |GET | /organizations/{orgId}/departments/{depId}/services/{serviceName}/service/cureent-sla | | |
 |services service-weekly-sla |GET | /organizations/{orgId}/departments/{depId}/services/{serviceName}/service/weekly-sla | | |
 |services service-monthly-sla |GET | /organizations/{orgId}/departments/{depId}/services/{serviceName}/service/monthly-sla | | |
-
- 
