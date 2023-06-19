@@ -17,80 +17,81 @@
 #### **1. organization wise**
 | description | method | end point | Request | Response | 
 |:---|:---|:---|:---|:---|
-|departments|GET | /organizations/{orgId}/departments | | [Response JSON](./jsons/Department/all.json)|
-|products|GET | /organizations/{orgId}/products | | |
-|landing Zones |GET | /organizations/{orgId}/landing-zone | | |
-|product enclaves|GET | /organizations/{orgId}/product-enclave | | |
-|resource count|GET | /organizations/{orgId}/cloud-environments/count | | |
-|resource summary|GET | /organizations/{orgId}/cloud-environments/summary | | |
-|services |GET | /organizations/{orgId}/services | | |
+|departments|GET |/query /organizations/{orgId}/departments | | [Response JSON](./jsons/Department/all.json)|
+|products|GET | /query/organizations/{orgId}/products | | |
+|landing Zones |GET | /query/organizations/{orgId}/landing-zone | | |
+|product enclaves|GET | /query/organizations/{orgId}/product-enclave | | |
+|resource count|GET | /query/organizations/{orgId}/cloud-environments/count | | |
+|resource summary|GET | /query/organizations/{orgId}/cloud-environments/summary | | |
+|services |GET | /query/organizations/{orgId}/services | | |
 
 #### **2. organization and department wise**
 | description | method | end point | Request | Response | 
 |:---|:---|:---|:---|:---|
-|products|GET | /organizations/{orgId}/departments/{depId}/products | | |
-|landing-zone |GET | /organizations/{orgId}/departments/{depId}/landing-zone | | | 
-|product enclave |GET | /organizations/{orgId}/departments/{depId}/product-enclave | | |
-|services |GET | /organizations/{orgId}/departments/{depId}/services | | |
+|products|GET | /query/organizations/{orgId}/departments/{depId}/products | | |
+|landing-zone |GET | /query/organizations/{orgId}/departments/{depId}/landing-zone | | | 
+|product enclave |GET | /query/organizations/{orgId}/departments/{depId}/product-enclave | | |
+|services |GET | /query/organizations/{orgId}/departments/{depId}/services | | |
 
 #### **3. organization and products wise services**
 | description | method | end point | Request | Response | 
 |:---|:---|:---|:---|:---|
-|services products |GET | /organizations/{orgId}/products/{product}/services | | |
+|services products |GET | /query/organizations/{orgId}/products/{product}/services | | |
 #### **4. organization and environments wise services**
 | description | method | end point | Request | Response | 
 |:---|:---|:---|:---|:---|
-|services environments |GET | /organizations/{orgId}/environments/{env}/services | | |
-#### **6. organization and products and environments wise services**
+|services environments |GET | /query/organizations/{orgId}/environments/{env}/services | | |
+#### **5. organization and products and environments wise services**
 | description | method | end point | Request | Response | 
 |:---|:---|:---|:---|:---|
-|services products environments |GET | /organizations/{orgId}/products/{product}/environments/{env}/services | | |
-#### **7. organization and service wise**
+|services products environments |GET | /query/organizations/{orgId}/products/{product}/environments/{env}/services | | |
+#### **6. organization and service wise**
 | description | method | end point | Request | Response | 
 |:---|:---|:---|:---|:---|
-|services service-type |GET | /organizations/{orgId}/service-type/{serviceType}/services | | |
-|services service-cost |GET | /organizations/{orgId}/services/{serviceName}/service-cost | | |
-|services service-daily-cost |GET | /organizations/{orgId}/services/{serviceName}/service-cost/daily | | |
-|services service-weekly-cost |GET | /organizations/{orgId}/services/{serviceName}/service-cost/weekly | | |
-|services service-monthly-cost |GET | /organizations/{orgId}/services/{serviceName}/service-cost/monthly | | |
-#### **8. organization and landingZone  wise service**
+|services service-type |GET | /query/organizations/{orgId}/service-type/{serviceType}/services | | |
+|services service-cost |GET | /query/organizations/{orgId}/services/{serviceName}/service-cost | | |
+|services service-daily-cost |GET | /query/organizations/{orgId}/services/{serviceName}/service-cost/daily | | |
+|services service-weekly-cost |GET | /query/organizations/{orgId}/services/{serviceName}/service-cost/weekly | | |
+|services service-monthly-cost |GET | /query/organizations/{orgId}/services/{serviceName}/service-cost/monthly | | |
+#### **7. organization and landingZone  wise service**
 | description | method | end point | Request | Response | 
 |:---|:---|:---|:---|:---|
-|services service-landing-zone-services-name |GET | /organizations/{orgId}/landing-zone/{landingZone}/services | | |
-|services service-landing-zone-products |GET | /organizations/{orgId}/landing-zone/{landingZone}/products | | |
-#### **9. organization and service wise service-sla**
+|services service-landing-zone-services-name |GET | /query/organizations/{orgId}/landing-zone/{landingZone}/services | | |
+|services service-landing-zone-products |GET | /query/organizations/{orgId}/landing-zone/{landingZone}/products | | |
+#### **8. organization and service wise service-sla**
 | description | method | end point | Request | Response | 
 |:---|:---|:---|:---|:---|
-|services service-sla |GET | /organizations/{orgId}/services/{name}/service-sla | | |
-|services service-cureent-sla |GET | /organizations/{orgId}/services/{serviceName}/service/cureent-sla | | |
-|services service-weekly-sla |GET | /organizations/{orgId}/services/{serviceName}/service/weekly-sla | | |
-|services service-monthly-sla |GET | /organizations/{orgId}/services/{serviceName}/service/monthly-sla | | |
-#### **10. organization and department and products wise service**
+|services service-sla |GET | /query/organizations/{orgId}/services/{name}/service-sla | | |
+|services service-cureent-sla |GET | /query/organizations/{orgId}/services/{serviceName}/service/cureent-sla | | |
+|services service-weekly-sla |GET | /query/organizations/{orgId}/services/{serviceName}/service/weekly-sla | | |
+|services service-monthly-sla |GET | /query/organizations/{orgId}/services/{serviceName}/service/monthly-sla | | |
+#### **9. organization and department and products wise service**
 | description | method | end point | Request | Response | 
 |:---|:---|:---|:---|:---|
-|services products |GET | /organizations/{orgId}/departments/{depId}/products/{product}/services | | |
-#### **11. organization and department and products and environments wise service**
+|services products |GET | /query/organizations/{orgId}/departments/{depId}/products/{product}/services | | |
+#### **10. organization and department and products and environments wise service**
 | description | method | end point | Request | Response | 
 |:---|:---|:---|:---|:---| 
-|services environments |GET | /organizations/{orgId}/departments/{depId}/environments/{env}/services | | |
-|services products environments |GET | /organizations/{orgId}/departments/{depId}/products/{product}/environments/{env}/services | | |
+|services environments |GET | /query/organizations/{orgId}/departments/{depId}/environments/{env}/services | | |
+|services products environments |GET | /query/organizations/{orgId}/departments/{depId}/products/{product}/environments/{env}/services | | |
 #### **12. organization and department  wise service**
 | description | method | end point | Request | Response | 
 |:---|:---|:---|:---|:---| 
-|services service-type |GET | /organizations/{orgId}/departments/{depId}/service-type/{serviceType}/services | | |
-|services service-cost |GET | /organizations/{orgId}/departments/{depId}/services/{serviceName}/service-cost | | |
-|services service-daily-cost |GET | /organizations/{orgId}/departments/{depId}/services/{serviceName}/service-cost/daily | | |
-|services service-weekly-cost |GET | /organizations/{orgId}/departments/{depId}/services/{serviceName}/service-cost/weekly | | |
-|services service-monthly-cost |GET | /organizations/{orgId}/departments/{depId}/services/{serviceName}/service-cost/monthly | | |
+|services service-type |GET | /query/organizations/{orgId}/departments/{depId}/service-type/{serviceType}/services | | |
+|services service-cost |GET | /query/organizations/{orgId}/departments/{depId}/services/{serviceName}/service-cost | | |
+|services service-daily-cost |GET | /query/organizations/{orgId}/departments/{depId}/services/{serviceName}/service-cost/daily | | |
+|services service-weekly-cost |GET | /query/organizations/{orgId}/departments/{depId}/services/{serviceName}/service-cost/weekly | | |
+|services service-monthly-cost |GET | /query/organizations/{orgId}/departments/{depId}/services/{serviceName}/service-cost/monthly | | |
 #### **13. organization and department landingZone  and service wise**
 | description | method | end point | Request | Response | 
 |:---|:---|:---|:---|:---|
-|services service-landing-zone-services-name |GET | /organizations/{orgId}/departments/{depId}/landing-zone/{landingZone}/services | | |
-|services service-landing-zone-products |GET | /organizations/{orgId}/departments/{depId}/landing-zone/{landingZone}/products | | |
+|services service-landing-zone-services-name |GET | /query/organizations/{orgId}/departments/{depId}/landing-zone/{landingZone}/services | | |
+|services service-landing-zone-products |GET | /query/organizations/{orgId}/departments/{depId}/landing-zone/{landingZone}/products | | |
 #### **14. organization and department and service wise service-sla**
 | description | method | end point | Request | Response | 
 |:---|:---|:---|:---|:---| 
-|services service-sla |GET | /organizations/{orgId}/departments/{depId}/services/{name}/service-sla | | |
-|services service-cureent-sla |GET | /organizations/{orgId}/departments/{depId}/services/{serviceName}/service/cureent-sla | | |
-|services service-weekly-sla |GET | /organizations/{orgId}/departments/{depId}/services/{serviceName}/service/weekly-sla | | |
-|services service-monthly-sla |GET | /organizations/{orgId}/departments/{depId}/services/{serviceName}/service/monthly-sla | | |
+|services service-sla |GET | /query/organizations/{orgId}/departments/{depId}/services/{name}/service-sla | | |
+|services service-cureent-sla |GET | /query/organizations/{orgId}/departments/{depId}/services/{serviceName}/service/cureent-sla | | |
+|services service-weekly-sla |GET | /query/organizations/{orgId}/departments/{depId}/services/{serviceName}/service/weekly-sla | | |
+|services service-monthly-sla |GET | /query/organizations/{orgId}/departments/{depId}/services/{serviceName}/service/monthly-sla | | |
+
