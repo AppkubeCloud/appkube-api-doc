@@ -58,6 +58,7 @@
 |:---|:---|:---|:---|:---|
 |services service-landing-zone-services-name |GET | /query/organizations/{orgId}/landing-zone/{landingZone}/services | | |
 |services service-landing-zone-products |GET | /query/organizations/{orgId}/landing-zone/{landingZone}/products | | |
+|services service-landing-zone-product-enclave |GET | /query/organizations/{orgId}/landing-zone/{landingZone}/product-enclave | | |
 #### **8. organization and service wise service-sla**
 | description | method | end point | Request | Response | 
 |:---|:---|:---|:---|:---|
@@ -87,6 +88,7 @@
 |:---|:---|:---|:---|:---|
 |services service-landing-zone-services-name |GET | /query/organizations/{orgId}/departments/{depId}/landing-zone/{landingZone}/services | | |
 |services service-landing-zone-products |GET | /query/organizations/{orgId}/departments/{depId}/landing-zone/{landingZone}/products | | |
+|services service-landing-zone-product-enclave |GET | /query/organizations/{orgId}/departments/{depId}/landing-zone/{landingZone}/product-enclave | | |
 #### **14. organization and department and service wise service-sla**
 | description | method | end point | Request | Response | 
 |:---|:---|:---|:---|:---| 
