@@ -24,7 +24,13 @@
 |resource count|GET | /query/organizations/{orgId}/cloud-environments/count | | |
 |resource summary|GET | /query/organizations/{orgId}/cloud-environments/summary | | |
 |services |GET | /query/organizations/{orgId}/services | | |
-
+|spends today |GET | /query/spend-today/organization/{orgId}/analytics | | |
+|spends yesterday |GET | /query/spend-yesterday/organization/{orgId}/analytics | | |
+|current spend rate  per hour |GET | /query/spend-current-rate/organization/{orgId}/hour/analytics | | |
+|current spend rate  per day |GET | /query/spend-current-rate/organization/{orgId}/day/analytics | | |
+|total spend  |GET | /query/spend-total/organization/{orgId}/analytics | | |
+|cloud wise spend  |GET | /query/cloud-wise/orgnaiztion/{orgId}/cloud-analytics | | |
+|cloud wise each monthly spend  |GET | /query/cloud-wise/orgnaiztion/{orgId}/monthly-analytics | | |
 #### **2. organization and department wise**
 | description | method | end point | Request | Response | 
 |:---|:---|:---|:---|:---|
