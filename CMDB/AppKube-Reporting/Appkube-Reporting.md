@@ -6,7 +6,7 @@
 ![](./image1.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/cost?orgId=1&cloud=all&granularity=quarterly&compareTo=last_quarter&spendType=actual |
+| API | /reporting/cost?orgId=1&cloud=all&granularity=quarterly&compareTo=-1&spendType=actual |
 | Method | GET |
 | Description | API provides actual consolidated cost of all the clouds and comparative stats based on the given query parameters |
 | Parameters |  |
@@ -16,8 +16,17 @@
     + aws (get consolidated cost of aws only)
     + azure (get consolidated cost of azure only)
     + gcp (get consolidated cost of gcp only)
-+ granularity - daily, weekly, monthly, quarterly, half-yearly, yearly
-+ compareTo - it is based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
++ granularity - quarterly
+    + daily
+    + weekly
+    + monthly
+    + quarterly
+    + half-yearly
+    + yearly
++ compareTo [Optional] - -1 (last_quarter, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc.. 
 + spendType [Optional] - If spendType is not provided, default will be actual
     + actual - Provide actual cost 
     + forcast - Provide forcasted cost  
@@ -27,7 +36,7 @@
 ![](./image2.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/cost?orgId=1&cloud=aws&granularity=quarterly&compareTo=last_quarter&spendType=actual |
+| API | /reporting/cost?orgId=1&cloud=aws&granularity=quarterly&compareTo=-1&spendType=actual |
 | Method | GET |
 | Description | API provides actual consolidated cost of all aws accounts and comparative stats based on the given query parameters |
 | Parameters |  |
@@ -37,8 +46,17 @@
     + aws (get consolidated cost of aws only)
     + azure (get consolidated cost of azure only)
     + gcp (get consolidated cost of gcp only)
-+ granularity - daily, weekly, monthly, quarterly, half-yearly, yearly
-+ compareTo - it is based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
++ granularity - quarterly
+    + daily
+    + weekly
+    + monthly
+    + quarterly
+    + half-yearly
+    + yearly
++ compareTo [Optional] - -1 (last_quarter, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + spendType [Optional] - If spendType is not provided, default will be actual
     + actual - Provide actual cost 
     + forcast - Provide forcasted cost
@@ -49,7 +67,7 @@
 ![](./image3.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/cost?orgId=1&cloud=azure&granularity=quarterly&compareTo=last_quarter&spendType=actual |
+| API | /reporting/cost?orgId=1&cloud=azure&granularity=quarterly&compareTo=-1&spendType=actual |
 | Method | GET |
 | Description | API provides actual consolidated cost of all azure accounts and comparative stats based on the given query parameters |
 | Parameters |  |
@@ -59,8 +77,17 @@
     + aws (get consolidated cost of aws only)
     + azure (get consolidated cost of azure only)
     + gcp (get consolidated cost of gcp only)
-+ granularity - daily, weekly, monthly, quarterly, half-yearly, yearly
-+ compareTo - it is based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
++ granularity - quarterly
+    + daily
+    + weekly
+    + monthly
+    + quarterly
+    + half-yearly
+    + yearly
++ compareTo [Optional] - -1 (last_quarter, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + spendType [Optional] - If spendType is not provided, default will be actual
     + actual - Provide actual cost 
     + forcast - Provide forcasted cost
@@ -71,7 +98,7 @@
 ![](./image4.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/cost?orgId=1&cloud=gcp&granularity=quarterly&compareTo=last_quarter&spendType=actual |
+| API | /reporting/cost?orgId=1&cloud=gcp&granularity=quarterly&compareTo=-1&spendType=actual |
 | Method | GET |
 | Description | API provides actual consolidated cost of all gcp accounts and comparative stats based on the given query parameters |
 | Parameters |  |
@@ -81,8 +108,17 @@
     + aws (get consolidated cost of aws only)
     + azure (get consolidated cost of azure only)
     + gcp (get consolidated cost of gcp only)
-+ granularity - daily, weekly, monthly, quarterly, half-yearly, yearly
-+ compareTo - it is based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
++ granularity - quarterly
+    + daily
+    + weekly
+    + monthly
+    + quarterly
+    + half-yearly
+    + yearly
++ compareTo [Optional] - -1 (last_quarter, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + spendType [Optional] - If spendType is not provided, default will be actual
     + actual - Provide actual cost 
     + forcast - Provide forcasted cost
@@ -93,7 +129,7 @@
 ![](./image5.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/estimated-cost-saving?orgId=1&cloud=all&granularity=quarterly&compareTo=last_quarter |
+| API | /reporting/estimated-cost-saving?orgId=1&cloud=all&granularity=quarterly&compareTo=-1 |
 | Method | GET |
 | Description | API provides estimated cost saved and comparative stats based on the given query |
 | Parameters |  |
@@ -103,8 +139,17 @@
     + aws (get estimated cost saving of aws only)
     + azure (get estimated cost saving of azure only)
     + gcp (get estimated cost saving gcp only)
-+ granularity - daily, weekly, monthly, quarterly, half-yearly, yearly
-+ compareTo - it is based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
++ granularity - quarterly
+    + daily
+    + weekly
+    + monthly
+    + quarterly
+    + half-yearly
+    + yearly
++ compareTo [Optional] - -1 (last_quarter, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 <hr>
 <br><br>  
 
@@ -112,7 +157,7 @@
 ![](./image6.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/service-category-wise-cost?orgId=1&service-category=all&cloud=all&granularity=quarterly&compareTo=last_quarter |
+| API | /reporting/service-category-wise-cost?orgId=1&service-category=all&cloud=all&granularity=quarterly&compareTo=-1 |
 | Method | GET |
 | Description | API provides service category wise actual cost of all clouds based on the given query parameters |
 | Parameters |  |
@@ -130,8 +175,17 @@
     + aws (get service category wise cost of aws only)
     + azure (get service category wise cost of azure only)
     + gcp (get service category wise cost of gcp only)
-+ granularity - daily, weekly, monthly, quarterly, half-yearly, yearly
-+ compareTo - it is based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
++ granularity - quarterly
+    + daily
+    + weekly
+    + monthly
+    + quarterly
+    + half-yearly
+    + yearly
++ compareTo [Optional] - -1 (last_quarter, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 <hr>
 <br><br>  
 
@@ -139,7 +193,7 @@
 ![](./image7.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/cost-trend?orgId=1&cloud=all&granularity=weekly&weekStart=saturday&startFrom=last_quarter&compareTo=last_quarter&forcast=false |
+| API | /reporting/cost-trend?orgId=1&cloud=all&granularity=weekly&weekStart=saturday&startFrom=-1&compareTo=-1&forcast=false |
 | Method | GET |
 | Description | API provides actual cost trend based on the given query parameters |
 | Parameters |  |
@@ -160,8 +214,11 @@
     + saturday
     + sunday
     + monday
-+ startFrom[optional] - last_quarter, last_month, last_year, current_quarter, current_year_start or last_n_months (n = 1,2,3,4....)
-+ compareTo - it is based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
++ startFrom[optional] - last_quarter, last_month, last_year, current_quarter, current_year_start or last_n_months (n = -4, -3, -2, -1, 0,1, 2,3,4....)
++ compareTo [Optional] - -1 (last_quarter, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + forcast[optional] - false (default false)
     + true (will provide forcasted cost trend based on the granularity)
     + false (will provide actual cost trend based on the granularity)
@@ -182,7 +239,17 @@
     + aws (get cost trend of aws only)
     + azure (get cost trend of azure only)
     + gcp (get cost trend of gcp only)
-+ granularity - daily, weekly, monthly, quarterly, half-yearly, yearly
++ granularity - quarterly
+    + daily
+    + weekly
+    + monthly
+    + quarterly
+    + half-yearly
+    + yearly
++ compareTo [Optional] - -1 (last_quarter, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 <hr>
 <br><br>  
 
@@ -190,7 +257,7 @@
 ![](./image9.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/region-wise-cost?orgId=1&cloud=all&region=all&granularity=quarterly&compareTo=last_quarter&noOfRecords=10&order=top |
+| API | /reporting/region-wise-cost?orgId=1&cloud=all&region=all&granularity=quarterly&compareTo=-1&noOfRecords=10&order=top |
 | Method | GET |
 | Description | API provides region wise actual cost and comparative stats based on the given query parameters |
 | Parameters |  |
@@ -200,8 +267,17 @@
     + aws (get region wise actual cost of aws only)
     + azure (get region wise actual cost of azure only)
     + gcp (get region wise actual cost of gcp only)
-+ granularity - daily, weekly, monthly, quarterly, half-yearly, yearly
-+ compareTo - it is based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
++ granularity - quarterly
+    + daily
+    + weekly
+    + monthly
+    + quarterly
+    + half-yearly
+    + yearly
++ compareTo [Optional] - -1 (last_quarter, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + noOfRecords [Optional] - any +ve integer (10)
     + (default is 0. that means all records). 
     + -ve will be discarded/ignored
@@ -215,7 +291,7 @@
 ![](./image10.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/account-wise-cost?orgId=1&cloud=all&account=all&granularity=quarterly&compareTo=last_quarter&noOfRecords=10&order=top |
+| API | /reporting/account-wise-cost?orgId=1&cloud=all&account=all&granularity=quarterly&compareTo=-1&noOfRecords=10&order=top |
 | Method | GET |
 | Description | API provides account wise actual cost and comparative stats based on the given query parameters |
 | Parameters |  |
@@ -225,8 +301,17 @@
     + aws (get region wise actual cost of aws only)
     + azure (get region wise actual cost of azure only)
     + gcp (get region wise actual cost of gcp only)
-+ granularity - daily, weekly, monthly, quarterly, half-yearly, yearly
-+ compareTo - it is based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
++ granularity - quarterly
+    + daily
+    + weekly
+    + monthly
+    + quarterly
+    + half-yearly
+    + yearly
++ compareTo [Optional] - -1 (last_quarter, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + noOfRecords [Optional] - any +ve integer (10)
     + (default is 0. that means all records). 
     + -ve will be discarded/ignored
@@ -243,7 +328,7 @@
 ![](./image11.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/service-category-wise-cost?orgId=1&service-category=all&cloud=aws&granularity=quarterly&compareTo=last_quarter |
+| API | /reporting/service-category-wise-cost?orgId=1&service-category=all&cloud=aws&granularity=quarterly&compareTo=-1 |
 | Method | GET |
 | Description | API provides service category wise actual cost of all clouds based on the given query parameters |
 | Parameters |  |
@@ -261,8 +346,17 @@
     + aws (get service category wise cost of aws only)
     + azure (get service category wise cost of azure only)
     + gcp (get service category wise cost of gcp only)
-+ granularity - daily, weekly, monthly, quarterly, half-yearly, yearly
-+ compareTo - it is based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
++ granularity - quarterly
+    + daily
+    + weekly
+    + monthly
+    + quarterly
+    + half-yearly
+    + yearly
++ compareTo [Optional] - -1 (last_quarter, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 <hr>
 <br><br>  
 
@@ -270,7 +364,7 @@
 ![](./image12.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/service-wise-cost?orgId=1&service=all&cloud=aws&granularity=quarterly&compareTo=last_quarter&noOfRecords=10&order=top |
+| API | /reporting/service-wise-cost?orgId=1&service=all&cloud=aws&granularity=quarterly&compareTo=-1&noOfRecords=10&order=top |
 | Method | GET |
 | Description | API provides service wise actual cost of aws account based on the given query parameters |
 | Parameters |  |
@@ -287,8 +381,17 @@
     + aws (get service wise actual cost of aws only)
     + azure (get service wise actual cost of azure only)
     + gcp (get service wise actual cost of gcp only)
-+ granularity - daily, weekly, monthly, quarterly, half-yearly, yearly
-+ compareTo - it is based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
++ granularity - quarterly
+    + daily
+    + weekly
+    + monthly
+    + quarterly
+    + half-yearly
+    + yearly
++ compareTo [Optional] - -1 (last_quarter, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + noOfRecords [Optional] - any +ve integer (10)
     + (default is 0. that means all records). 
     + -ve will be discarded/ignored
@@ -302,7 +405,7 @@
 ![](./image13.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/estimated-cost-saving?orgId=1&cloud=aws&granularity=quarterly&compareTo=last_quarter |
+| API | /reporting/estimated-cost-saving?orgId=1&cloud=aws&granularity=quarterly&compareTo=-1 |
 | Method | GET |
 | Description | API provides estimated cost saved of aws accounts and comparative stats based on the given query |
 | Parameters |  |
@@ -312,8 +415,17 @@
     + aws (get estimated cost saving of aws only)
     + azure (get estimated cost saving of azure only)
     + gcp (get estimated cost saving gcp only)
-+ granularity - daily, weekly, monthly, quarterly, half-yearly, yearly
-+ compareTo - it is based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
++ granularity - quarterly
+    + daily
+    + weekly
+    + monthly
+    + quarterly
+    + half-yearly
+    + yearly
++ compareTo [Optional] - -1 (last_quarter, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 <hr>
 <br><br>  
 
@@ -322,7 +434,7 @@
 ![](./image14.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/account-wise-cost?orgId=1&cloud=aws&account=all&granularity=quarterly&compareTo=last_quarter&noOfRecords=10&order=top |
+| API | /reporting/account-wise-cost?orgId=1&cloud=aws&account=all&granularity=quarterly&compareTo=-1&noOfRecords=10&order=top |
 | Method | GET |
 | Description | API provides aws account wise actual cost and comparative stats based on the given query parameters |
 | Parameters |  |
@@ -335,8 +447,17 @@
 + account - all
     + all (get cost of all the aws accounts)
     + 12345678 etc.. (get cost of provided ws account only)    
-+ granularity - daily, weekly, monthly, quarterly, half-yearly, yearly
-+ compareTo - it is based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
++ granularity - quarterly
+    + daily
+    + weekly
+    + monthly
+    + quarterly
+    + half-yearly
+    + yearly
++ compareTo [Optional] - -1 (last_quarter, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + noOfRecords [Optional] - any +ve integer (10)
     + (default is 0. that means all records). 
     + -ve will be discarded/ignored
@@ -350,7 +471,7 @@
 ![](./image15.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/cost-trend?orgId=1&cloud=aws&granularity=monthly&compareTo=last_month&forcast=true |
+| API | /reporting/cost-trend?orgId=1&cloud=aws&granularity=monthly&compareTo=-1&forcast=true |
 | Method | GET |
 | Description | API provides two actual costs based on the granularity along with forcasted cost. |
 | Parameters |  |
@@ -372,7 +493,10 @@
     + sunday
     + monday
 + startFrom[optional] - last_quarter, last_month, last_year, current_quarter, current_year_start or last_n_months (n = 1,2,3,4....)
-+ compareTo - it is based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
++ compareTo [Optional] - -1 (last_month, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + forcast[optional] - false (default false)
     + true (will provide forcasted cost trend based on the granularity)
     + false (will provide actual cost trend based on the granularity)
@@ -383,7 +507,7 @@
 ![](./image16.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/region-wise-cost?orgId=1&cloud=aws&region=all&granularity=quarterly&compareTo=last_quarter&noOfRecords=5&order=top |
+| API | /reporting/region-wise-cost?orgId=1&cloud=aws&region=all&granularity=quarterly&compareTo=-1&noOfRecords=5&order=top |
 | Method | GET |
 | Description | API provides region wise actual cost and comparative stats based on the given query parameters |
 | Parameters |  |
@@ -400,7 +524,10 @@
     + quarterly
     + half-yearly
     + yearly
-+ compareTo - it is based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
++ compareTo [Optional] - -1 (last_quarter, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + noOfRecords [Optional] - any +ve integer (5)
     + (default is 0. that means all records). 
     + -ve will be discarded/ignored
@@ -434,7 +561,7 @@
 ![](./image18.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/cost?orgId=1&cloud=aws&granularity=monthly&compareTo=last_month&spendType=forcast |
+| API | /reporting/cost?orgId=1&cloud=aws&granularity=monthly&compareTo=-1&spendType=forcast |
 | Method | GET |
 | Description | API provides current month's forcasted cost of all aws accounts and comparative stats based on the given query parameters |
 | Parameters |  |
@@ -451,7 +578,10 @@
     + quarterly
     + half-yearly
     + yearly
-+ compareTo - it is based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
++ compareTo [Optional] - -1 (last_month, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + spendType [Optional] - If spendType is not provided, default will be actual
     + actual - Provide actual cost 
     + forcast - Provide forcasted cost
@@ -487,10 +617,10 @@
 + startFrom[optional] - -2
     + last_quarter, last_month, last_year, current_quarter, current_year_start or 
     + -n to n (e.g. n = -4, -3, -2, -1, 0, 1,2,3,4....)
-+ compareTo - -1 (based on granularity)
-    + default 0 (current month)    
-    + based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
-    + -n to n (e.g -2, -1, 1)
++ compareTo [Optional] - -1 (last_month, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + forcast[optional] - false (default false)
     + true (will provide forcasted cost trend based on the granularity)
     + false (will provide actual cost trend based on the granularity)
@@ -523,13 +653,13 @@
     + saturday
     + sunday
     + monday
-+ startFrom[optional] - -1
++ startFrom[optional] - -1 (last_month)
     + last_quarter, last_month, last_year, current_quarter, current_year_start or 
     + -n to n (e.g. n = -4, -3, -2, -1, 0, 1,2,3,4....)
-+ compareTo - 0 (based on granularity)
++ compareTo [Optional] - 0 (current_year, based on granularity)
     + default 0 (current day/week/month/year)    
-    + based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
-    + -n to n (e.g -2, -1, 1)
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + forcast[optional] - false (default false)
     + true (will provide forcasted cost trend based on the granularity)
     + false (will provide actual cost trend based on the granularity)
@@ -565,10 +695,10 @@
     + quarterly
     + half-yearly
     + yearly
-+ compareTo [Optional] - 0 (based on granularity)
++ compareTo [Optional] -
     + default 0 (current day/week/month/year)    
-    + based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
-    + -n to n (e.g -2, -1, 1)
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + noOfRecords [Optional] - any +ve integer (10)
     + (default is 0. that means all records). 
     + -ve will be discarded/ignored
@@ -603,10 +733,10 @@
     + quarterly
     + half-yearly
     + yearly
-+ compareTo [Optional] - 0 (based on granularity)
++ compareTo [Optional] - 
     + default 0 (current day/week/month/year)    
-    + based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
-    + -n to n (e.g -2, -1, 1)
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + noOfRecords [Optional] - any +ve integer (5)
     + (default is 0. that means all records). 
     + -ve will be discarded/ignored
@@ -638,10 +768,10 @@
     + quarterly
     + half-yearly
     + yearly
-+ compareTo [Optional] - 0 (based on granularity)
++ compareTo [Optional] - 
     + default 0 (current day/week/month/year)    
-    + based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
-    + -n to n (e.g -2, -1, 1)
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + noOfRecords [Optional] - any +ve integer (5)
     + (default is 0. that means all records). 
     + -ve will be discarded/ignored
@@ -675,10 +805,10 @@
     + quarterly
     + half-yearly
     + yearly
-+ compareTo [Optional] - 0 (based on granularity)
++ compareTo [Optional] - 
     + default 0 (current day/week/month/year)    
-    + based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
-    + -n to n (e.g -2, -1, 1)
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + noOfRecords [Optional] - any +ve integer (5)
     + (default is 0. that means all records). 
     + -ve will be discarded/ignored
@@ -716,10 +846,10 @@
     + quarterly
     + half-yearly
     + yearly
-+ compareTo [Optional] - 0 (based on granularity)
++ compareTo [Optional] - 
     + default 0 (current day/week/month/year)    
-    + based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
-    + -n to n (e.g -2, -1, 1)
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + noOfRecords [Optional] - any +ve integer (5)
     + (default is 0. that means all records). 
     + -ve will be discarded/ignored
@@ -736,7 +866,7 @@
 ![](./image26.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/region-wise-cost-details?orgId=1&cloud=aws&region=all&granularity=monthlynoOfRecords=5&order=top |
+| API | /reporting/region-wise-cost-details?orgId=1&cloud=aws&region=all&granularity=monthly&noOfRecords=5&order=top |
 | Method | GET |
 | Description | API provides top 5 aws region wise actual cost details based on the given query parameters |
 | Parameters |  |
@@ -753,10 +883,10 @@
     + quarterly
     + half-yearly
     + yearly
-+ compareTo [Optional] - 0 (based on granularity)
++ compareTo [Optional] - 
     + default 0 (current day/week/month/year)    
-    + based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
-    + -n to n (e.g -2, -1, 1)
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + noOfRecords [Optional] - any +ve integer (5)
     + (default is 0. that means all records). 
     + -ve will be discarded/ignored
@@ -797,10 +927,10 @@
     + quarterly
     + half-yearly
     + yearly
-+ compareTo [Optional] - 0 (based on granularity)
++ compareTo [Optional] - 
     + default 0 (current day/week/month/year)    
-    + based on granularity, if granularity is quarterly, compareTo can be fist_quarter,second_quarter, third_quarter,fourth_quarter or last_quarter
-    + -n to n (e.g -2, -1, 1)
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
 + noOfRecords [Optional] - any +ve integer (10)
     + (default is 0. that means all records). 
     + -ve will be discarded/ignored
