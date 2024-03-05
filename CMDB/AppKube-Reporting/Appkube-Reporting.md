@@ -30,6 +30,60 @@
 + spendType [Optional] - If spendType is not provided, default will be actual
     + actual - Provide actual cost 
     + forcast - Provide forcasted cost  
+
+Response  
+
+    {
+        "label": "Consolidated Cloud Cost",
+        "granularity": "quarterly"
+        "compareTo": "previousQuarter",
+        "spendType": "actual",
+        "cloud": "all",
+        "cost": {
+            "current":{
+                "label":"quarter",
+                "from":"yyyy-mm-dd",
+                "to": "yyyy-mm-dd"
+                "amount":"400"
+            },
+            "previous":{
+                "label":"quarter",
+                "from":"yyyy-mm-dd",
+                "to": "yyyy-mm-dd"
+                "amount":"380"
+            },
+            "difference":{
+                "amount":"20",
+                "percentVariation":"5.2%"
+            }
+            "message": "with respect to previous quarter, current quarter cost increased by $20"
+        },
+        "currency":{
+            "code": "USD",
+            "symbol" : "$"
+        },
+        "organization": {
+            "id" : 1,
+            "name": "Synectiks"
+        }
+    }  
+    
+Pseudo Code  
+
+    1. call aswsx api to get current quarter cost of all landing zones of given organization
+    2. call cmdb api to collect previous quarter cost of all landing zones of given organization
+    3. repeat step 1 to 2 for other clouds
+    4. add current quarter cost of all accounts
+    5. add previous quarter cost of all accounts
+    6. calculate diffrence. sum of current quarter cost - sum of previous quarter cost
+    7. calculate percentage variation.  
+        ((sum of current quarter cost - sum of previous quarter cost) / sum of previous quarter cost) * 100
+    8. create response and return
+    
+      
+Proposed Data-Model Changes  
+
+    NIL      
 <hr>
 <br><br>  
 
@@ -60,6 +114,60 @@
 + spendType [Optional] - If spendType is not provided, default will be actual
     + actual - Provide actual cost 
     + forcast - Provide forcasted cost
+
+Response  
+
+    {
+        "label": "Aws Cost",
+        "granularity": "quarterly"
+        "compareTo": "previousQuarter",
+        "spendType": "actual",
+        "cloud": "aws",
+        "cost": {
+            "current":{
+                "label":"quarter",
+                "from":"yyyy-mm-dd",
+                "to": "yyyy-mm-dd"
+                "amount":"400"
+            },
+            "previous":{
+                "label":"quarter",
+                "from":"yyyy-mm-dd",
+                "to": "yyyy-mm-dd"
+                "amount":"380"
+            },
+            "difference":{
+                "amount":"20",
+                "percentVariation":"5.2%"
+            }
+            "message": "with respect to previous quarter, current quarter cost increased by $20"
+        },
+        "currency":{
+            "code": "USD",
+            "symbol" : "$"
+        },
+        "organization": {
+            "id" : 1,
+            "name": "Synectiks"
+        }
+    }  
+    
+Pseudo Code  
+
+    1. call aswsx api to get current quarter cost of all landing zones of aws of given organization
+    2. call cmdb api to collect previous quarter cost of all landing zones of aws of given organization
+    3. add current quarter cost of all accounts
+    4. add previous quarter cost of all accounts
+    5. calculate diffrence. sum of current quarter cost - sum of previous quarter cost
+    6. calculate percentage variation.  
+        ((sum of current quarter cost - sum of previous quarter cost) / sum of previous quarter cost) * 100
+    7. create response and return
+    
+      
+Proposed Data-Model Changes  
+
+    NIL      
+
 <hr>
 <br><br>  
 
@@ -91,6 +199,61 @@
 + spendType [Optional] - If spendType is not provided, default will be actual
     + actual - Provide actual cost 
     + forcast - Provide forcasted cost
+
+Response  
+
+    {
+        "label": "Azure Cost",
+        "granularity": "quarterly"
+        "compareTo": "previousQuarter",
+        "spendType": "actual",
+        "cloud": "azure",
+        "cost": {
+            "current":{
+                "label":"quarter",
+                "from":"yyyy-mm-dd",
+                "to": "yyyy-mm-dd"
+                "amount":"400"
+            },
+            "previous":{
+                "label":"quarter",
+                "from":"yyyy-mm-dd",
+                "to": "yyyy-mm-dd"
+                "amount":"380"
+            },
+            "difference":{
+                "amount":"20",
+                "percentVariation":"5.2%"
+            }
+            "message": "with respect to previous quarter, current quarter cost increased by $20"
+        },
+        "currency":{
+            "code": "USD",
+            "symbol" : "$"
+        },
+        "organization": {
+            "id" : 1,
+            "name": "Synectiks"
+        }
+    }  
+    
+Pseudo Code  
+
+    1. call aswsx api to get current quarter cost of all landing zones of azure of given organization
+    2. call cmdb api to collect previous quarter cost of all landing zones of azure of given organization
+    3. add current quarter cost of all accounts
+    4. add previous quarter cost of all accounts
+    5. calculate diffrence. sum of current quarter cost - sum of previous quarter cost
+    6. calculate percentage variation.  
+        ((sum of current quarter cost - sum of previous quarter cost) / sum of previous quarter cost) * 100
+    7. create response and return
+    
+      
+Proposed Data-Model Changes  
+
+    NIL      
+
+
 <hr>
 <br><br>  
 
@@ -122,6 +285,61 @@
 + spendType [Optional] - If spendType is not provided, default will be actual
     + actual - Provide actual cost 
     + forcast - Provide forcasted cost
+
+Response  
+
+    {
+        "label": "GCP Cost",
+        "granularity": "quarterly"
+        "compareTo": "previousQuarter",
+        "spendType": "actual",
+        "cloud": "gcp",
+        "cost": {
+            "current":{
+                "label":"quarter",
+                "from":"yyyy-mm-dd",
+                "to": "yyyy-mm-dd"
+                "amount":"400"
+            },
+            "previous":{
+                "label":"quarter",
+                "from":"yyyy-mm-dd",
+                "to": "yyyy-mm-dd"
+                "amount":"380"
+            },
+            "difference":{
+                "amount":"20",
+                "percentVariation":"5.2%"
+            }
+            "message": "with respect to previous quarter, current quarter cost increased by $20"
+        },
+        "currency":{
+            "code": "USD",
+            "symbol" : "$"
+        },
+        "organization": {
+            "id" : 1,
+            "name": "Synectiks"
+        }
+    }  
+    
+Pseudo Code  
+
+    1. call aswsx api to get current quarter cost of all landing zones of gcp of given organization
+    2. call cmdb api to collect previous quarter cost of all landing zones of gcp of given organization
+    3. add current quarter cost of all accounts
+    4. add previous quarter cost of all accounts
+    5. calculate diffrence. sum of current quarter cost - sum of previous quarter cost
+    6. calculate percentage variation.  
+        ((sum of current quarter cost - sum of previous quarter cost) / sum of previous quarter cost) * 100
+    7. create response and return
+    
+      
+Proposed Data-Model Changes  
+
+    NIL      
+
+
 <hr>
 <br><br>  
 
@@ -150,6 +368,53 @@
     + default 0 (current day/week/month/year)    
     + -n to n (e.g -2, -1, 0) 
         + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
+
+Response  
+
+    {
+        "label": "Estimated savings of all clouds",
+        "granularity": "quarterly"
+        "compareTo": "previousQuarter",
+        "spendType": "actual",
+        "cloud": "all",
+        "cost": {
+            "current":{
+                "label":"quarter",
+                "from":"yyyy-mm-dd",
+                "to": "yyyy-mm-dd"
+                "amount":"400"
+            },
+            "previous":{
+                "label":"quarter",
+                "from":"yyyy-mm-dd",
+                "to": "yyyy-mm-dd"
+                "amount":"380"
+            },
+            "difference":{
+                "amount":"20",
+                "percentVariation":"5.2%"
+            }
+            "message": "with respect to previous quarter, current quarter savings increased by $20"
+        },
+        "currency":{
+            "code": "USD",
+            "symbol" : "$"
+        },
+        "organization": {
+            "id" : 1,
+            "name": "Synectiks"
+        }
+    }  
+    
+Pseudo Code  
+
+    TO DO: Algorithem Required to calculate estimated savings for each cloud
+       
+Proposed Data-Model Changes  
+
+    TO DO: Will be decided later, based on the provided algorithem       
+
+
 <hr>
 <br><br>  
 
@@ -157,7 +422,7 @@
 ![](./image6.png)
 |  |  |
 | ------ | ------ |
-| API | /reporting/service-category-wise-cost?orgId=1&service-category=all&cloud=all&granularity=quarterly&compareTo=-1 |
+| API | /reporting/service-category-wise-cost?orgId=1&service-category=all&cloud=all&granularity=quarterly |
 | Method | GET |
 | Description | API provides service category wise actual cost of all clouds based on the given query parameters |
 | Parameters |  |
@@ -186,6 +451,82 @@
     + default 0 (current day/week/month/year)    
     + -n to n (e.g -2, -1, 0) 
         + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
+
+Response  
+
+    {
+        "label": "Top Service Categories",
+        "label": "Service category-wise cost of all clouds",
+        "granularity": "quarterly"
+        "spendType": "actual",
+        "cloud": "all",
+        "dateTimeRange": {
+            "from":"yyyy-mm-dd hh:mm:ss",
+            "to": "yyyy-mm-dd hh:mm:ss"        
+        },
+        "order":"high to low",
+        "cost": {
+            "aws":{
+                "compute":"1000",
+                "storage":"900",
+                "database":"800",
+                "networking":"700",
+                "data transfers":"600",
+                "monitoring":"500"
+            },
+            "azure":{
+                "compute":"1000",
+                "storage":"900",
+                "database":"800",
+                "networking":"700",
+                "data transfers":"600",
+                "monitoring":"500"
+            },
+            "gcp":{
+                "compute":"1000",
+                "storage":"900",
+                "database":"800",
+                "networking":"700",
+                "data transfers":"600",
+                "monitoring":"500"
+            }
+        },
+        "colorCode":{
+            "aws": {
+                "text":"amber",
+                "hex":""
+            },
+            "azure": {
+                "text":"skyblue",
+                "hex":""
+            },
+            "gcp": {
+                "text":"darkgreen",
+                "hex":""
+            }       
+        },
+        "currency":{
+            "code": "USD",
+            "symbol" : "$"
+        },
+        "organization": {
+            "id" : 1,
+            "name": "Synectiks"
+        }
+    }  
+    
+Pseudo Code  
+
+    1. call aswsx api to get service category-wise cost of all landing zones of aws of given organization for given query parameters
+    3. repeat step 1 for other clouds like Azure, GCP etc..
+    4. maintain the list in descending order of cost for each cloud
+    5. create response and return
+       
+Proposed Data-Model Changes  
+
+    NIL       
+
+
 <hr>
 <br><br>  
 
