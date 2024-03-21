@@ -875,6 +875,189 @@ curr_list as
 <hr>      
 <br><br> 
 
+![](./image7.png)
+|  |  |
+| ------ | ------ |
+| API | /reporting/organization/{orgId}/top-used-service/detail?cloud=aws&granularity=quarterly&compareTo=-1 |
+| Method | GET |
+| Description | API provides details of a top-used-services based on the given query parameters |
+| Parameters |  |
++ orgId - Organization id of logged-in user. A long unique database identifier!
++ cloud - aws
+    + all (get service category wise cost of all clouds)
+    + aws (get service category wise cost of aws only)
+    + azure (get service category wise cost of azure only)
+    + gcp (get service category wise cost of gcp only)
++ granularity - quarterly
+    + daily
+    + weekly
+    + monthly
+    + quarterly
+    + half-yearly
+    + yearly
++ compareTo - -1 (last_quarter, based on granularity)
+    + default 0 (current day/week/month/year)    
+    + -n to n (e.g -2, -1, 0) 
+        + based on granularity, -1 will be last_day, last_week, last_month, last_quarter, last_year etc..
+
++ required parameter :-
+    + orgId   
+    + cloud
+    + granularity
+    + compareTo
+
++ Query
+ ```
+ with ltl as (
+with last_to_last as 
+(select distinct ce.element_type, SUM(CAST(jb.value AS int)) AS total   
+	FROM 
+		cloud_element ce, 
+		landingzone l, 
+		department d, 
+		organization o, 
+		jsonb_each_text(ce.cost_json -> 'cost' -> 'DAILYCOST') AS jb(key, value) 
+	WHERE 
+		l.department_id = d.id 
+		AND d.organization_id = o.id 
+		AND ce.landingzone_id = l.id 
+		AND jb.key >= '2024-01-01' AND jb.key <= '2024-01-31'  
+		and upper(l.cloud) = upper('aws') 
+		AND o.id = 1 group by ce.element_type) select 'service_name' as service_name, sum(total) as total from last_to_last),		
+prev_list as 
+(select distinct ce.element_type, SUM(CAST(jb.value AS int)) AS total   
+	FROM 
+		cloud_element ce, 
+		landingzone l, 
+		department d, 
+		organization o, 
+		jsonb_each_text(ce.cost_json -> 'cost' -> 'DAILYCOST') AS jb(key, value) 
+	WHERE 
+		l.department_id = d.id 
+		AND d.organization_id = o.id 
+		AND ce.landingzone_id = l.id 
+		AND jb.key >= '2024-02-01' AND jb.key <= '2024-02-29'  
+		and upper(l.cloud) = upper('aws') 
+		AND o.id = 1 group by ce.element_type), 
+curr_list as 
+(select distinct ce.element_type, SUM(CAST(jb.value AS int)) AS total   
+	FROM 
+		cloud_element ce, 
+		landingzone l, 
+		department d, 
+		organization o, 
+		jsonb_each_text(ce.cost_json -> 'cost' -> 'DAILYCOST') AS jb(key, value) 
+	WHERE 
+		l.department_id = d.id 
+		AND d.organization_id = o.id 
+		AND ce.landingzone_id = l.id 
+		AND jb.key >= '2024-03-01' AND jb.key <= '2024-03-20'  
+		and upper(l.cloud) = upper('aws') 
+		AND o.id = 1 group by ce.element_type),
+	nof_current as ( with num_of_days_current as (SELECT (( EXTRACT(EPOCH FROM cast('2024-03-21' as date)) - EXTRACT(EPOCH FROM cast('2024-03-01' as date)) ) / 86400)+1 AS num_of_days)
+		select num_of_days from num_of_days_current),
+	nof_previous as ( with num_of_days_current as (SELECT (( EXTRACT(EPOCH FROM cast('2024-02-29' as date)) - EXTRACT(EPOCH FROM cast('2024-02-01' as date)) ) / 86400)+1 AS num_of_days)
+		select num_of_days from num_of_days_current),	
+    prev_list_sum as (select 'service_name' as service_name, sum(total) as total from prev_list ),
+    prev_avg_daily_spend as (select 'service_name' as service_name, cast(pls.total/(select num_of_days from nof_previous) as int) as average from prev_list_sum pls ),
+	curr_list_sum as (select 'service_name' as service_name, sum(total) as total from curr_list ),
+	future_cost as (
+		SELECT 'service_name' as service_name, (cls.total - cast (floor(random() * (80000 - 70000 + 1) + 70000) as int)) as total from curr_list_sum cls),
+	f as (select p.element_type as service_name, p.total as last_month_spend, c.total as this_month_spend, 0 as forecasted_spend, 0 as avg_daily_spend, 
+	round((c.total - p.total)/(c.total * 1.0 ) * 100 , 2) as variance		
+	from prev_list p left join curr_list c on p.element_type = c.element_type 
+		union all 
+	select upper('total_last_mont_spend') as service_name, ps.total as last_month_spend, null as this_month_spend, 0 as forecasted_spend, 0 as avg_daily_spend, 
+	round((ps.total - ll.total)/(ps.total * 1.0 ) * 100 , 2) as variance 
+	from prev_list_sum ps left join ltl ll on ps.service_name = ll.service_name
+		union all 
+	select upper('total_this_mont_spend') as service_name, null as last_month_spend, cls.total as this_month_spend, 0 as forecasted_spend, 0 as avg_daily_spend, 
+	round((cls.total - pls.total)/(cls.total * 1.0 ) * 100 , 2) as variance 
+	from curr_list_sum cls left join prev_list_sum pls on cls.service_name = pls.service_name
+		union all
+	select upper('forecasted_spend') as service_name, null as last_month_spend, null as this_month_spend, fc.total as forecasted_spend, 0 as avg_daily_spend, 
+	round((fc.total - cls.total)/(fc.total * 1.0 ) * 100 , 2) as variance 
+	from future_cost fc	left join curr_list_sum cls on fc.service_name = cls.service_name
+		union all 
+	select upper('avg_daily_spend') as service_name, null as last_month_spend, null as this_month_spend, 0 as forecasted_spend, 
+	cast(cls.total/(select num_of_days from nof_current) as int) as avg_daily_spend, 
+	round((cast(cls.total/(select num_of_days from nof_current) as int) - cast(pls.total/(select num_of_days from nof_previous) as int))/(cast(cls.total/(select num_of_days from nof_current) as int) * 1.0 ) * 100 , 2) as variance 
+	from curr_list_sum cls left join prev_list_sum pls on cls.service_name = pls.service_name)
+	select ROW_NUMBER() OVER () as id,service_name, last_month_spend, this_month_spend, forecasted_spend, avg_daily_spend, variance from f
+	order by id asc
+	 
+
+ ```
+
++ Query Output 
+<table style="border:2px solid white;">
+    <tr>
+        <th>id</th>
+        <th>service_name</th>
+        <th>last_month_spend</th>
+        <th>this_month_spend</th>
+        <th>forecasted_spend</th>
+        <th>avg_daily_spend</th>
+        <th>variance</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>EC2</td>
+        <td>413411</td>
+        <td>284975</td>
+        <td>0</td>
+        <td>0</td>
+        <td>-45.07</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>LAMBDA</td>
+        <td>1725335</td>
+        <td>1191285</td>
+        <td>0</td>
+        <td>0</td>
+        <td>-44.83</td>
+    </tr>
+     <tr>
+        <td>3</td>
+        <td>TOTAL_LAST_MONT_SPEND</td>
+        <td>2138746</td>
+        <td></td>
+        <td>0</td>
+        <td>0</td>
+        <td>-6.92</td>
+    </tr>
+     <tr>
+        <td>4</td>
+        <td>TOTAL_THIS_MONT_SPEND</td>
+        <td></td>
+        <td>1476260</td>
+        <td>0</td>
+        <td>0</td>
+        <td>-44.88</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>FORECASTED_SPEND</td>
+        <td></td>
+        <td></td>
+        <td>1405408</td>
+        <td>0</td>
+        <td>-5.04</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>AVG_DAILY_SPEND</td>
+        <td></td>
+        <td></td>
+        <td>0</td>
+        <td>70298</td>
+        <td>-4.91</td>
+    </tr>
+ </table>
+
+<hr>      
+<br><br> 
  
 
 
